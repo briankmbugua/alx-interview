@@ -4,18 +4,18 @@
 
 
 def pascal_triangle(n):
-    '''Returns a list of lists of integers representing the Pascal's triangle'''
-    if n <= 0:
-        return []
-
+    '''list of lists of integers representing
+    the Pascal's triangle of a given integer n.
+    '''
     triangle = []
+    if type(n) is not int or n <= 0:
+        return triangle
     for i in range(n):
-        row = [1]
-        if triangle:
-            last_row = triangle[-1]
-            row.extend([last_row[j] + last_row[j + 1]
-                       for j in range(len(last_row) - 1)])
-            row.append(1)
+        row = []
+        for j in range(i + 1):
+            if j == 0 or j == i:
+                row.append(1)
+            elif i > 0 and j > 0:
+                row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
         triangle.append(row)
-
     return triangle
