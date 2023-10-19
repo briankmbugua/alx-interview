@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+"""log parsing
+"""
+
+
 import sys
 import signal
 
@@ -6,15 +11,18 @@ total_file_size = 0
 status_code_counts = {}
 line_count = 0
 
+
 def print_statistics():
     print(f"File size: {total_file_size}")
     for status_code in sorted(status_code_counts.keys(), key=int):
         print(f"{status_code}: {status_code_counts[status_code]}")
 
+
 # Function to handle keyboard interruption (CTRL + C)
 def signal_handler(sig, frame):
     print_statistics()
     sys.exit(0)
+
 
 # Set up the signal handler for keyboard interruption
 signal.signal(signal.SIGINT, signal_handler)
